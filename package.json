@@ -1,0 +1,43 @@
+{
+  "name": "playwright-jest-typescript",
+  "version": "1.0.0",
+  "description": "**Introduction**",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diwakar-d/playwright-jest-typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diwakar-d/playwright-jest-typescript/issues"
+  },
+  "homepage": "https://github.com/diwakar-d/playwright-jest-typescript#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "jest": "^27.0.6",
+    "jest-playwright-preset": "^1.4.5",
+    "playwright": "^1.13.0",
+    "typescript": "^4.1.3",
+    "ts-jest": "^27.0.4",
+    "ts-node": "10.1.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "testTimeout": 200000
+  }
+}
