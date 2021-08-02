@@ -1,27 +1,26 @@
-import { Browser, chromium, Page } from "playwright";
 import LoginPage from "../PageObjects/login.page";
-import BasePage from "../base.page";
-
-const fs = require('fs');
+import { Browser, chromium, Page } from "playwright";
+import fs = require('fs');
 const yaml = require('js-yaml');
+
 let fileContents = fs.readFileSync('C:/Users/diwakar.devapalan/Documents/Learn/AutomationProjects/Playwright/playwright-jest-typescript/config.yaml', 'utf8');
 let data = yaml.safeLoad(fileContents);
-let page: Page;
-let login: LoginPage;
-let browser:Browser;
-let base: BasePage;
 
 describe('Login', () => {
+    let login: LoginPage;
+    let page: Page;
+    let browser: Browser;
+    
     beforeAll( async () => {
-        login = new LoginPage(page);
+        browser = await chromium.launch({
+            headless: false
+            })
     })
 
     beforeEach( async () => {
-        browser = await chromium.launch({
-        headless: false
-        })
         const context = await browser.newContext();
-        const page = await context.newPage();
+        page = await context.newPage();
+        login = new LoginPage(page);
         await page.goto(data.url);
     })
 
@@ -29,9 +28,21 @@ describe('Login', () => {
         await login.enterUserName(data.username);
         await login.enterPassword(data.password);
         await login.clickOnLogin();  
+        await login.successfulAssertion();
+    })
+
+    test('Incorrect password', async () => {
+        await login.enterUserName("john");
+        await login.enterPassword("");
+        await login.clickOnLogin(); 
+        await login.wrongPasswordErrorAssertion(); 
     })
 
     afterEach( async () => {
-        await browser.close();
+        await page?.close();
+    })
+
+    afterAll( async () => {
+        await browser?.close();
     })
 })

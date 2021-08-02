@@ -1,7 +1,7 @@
 import { Page } from "playwright";
 
 export default class BasePage {
-    page: Page;
+    private page: Page;
     constructor(page: Page){
         this.page = page;
     }
