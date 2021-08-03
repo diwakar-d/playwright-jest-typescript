@@ -1,16 +1,15 @@
+//Page to hold all locators and methods related to Login
 import { Page } from "playwright";
 import fs = require('fs');
-const yaml = require('js-yaml');
-
-let fileContents = fs.readFileSync('C:/Users/diwakar.devapalan/Documents/Learn/AutomationProjects/Playwright/playwright-jest-typescript/config.yaml', 'utf8');
-let data = yaml.safeLoad(fileContents);
 
 export default class LoginPage {
     private page: Page;
+    //Constructor for LoginPage with the 'page' being instantiated by the calling class
     constructor(page: Page){
         this.page = page;
     }
 
+    //Locators for Login page elements
     userNameField = async () => await this.page.$("input[name = 'username']");
     passwordField = async () => await this.page.$("input[name = 'password']");
     loginButton = async () => await this.page.$("input[value = 'Log In']");
@@ -32,6 +31,7 @@ export default class LoginPage {
         await login?.click();
     }
 
+    //Assertion for successful login when correct username and password is provided
     public async successfulAssertion(){
         const name = await this.nameOfTheUser();
         await name?.isVisible();
@@ -43,6 +43,7 @@ export default class LoginPage {
        await this.clickOnLogin();
     }
 
+    //Assertion for error message when password is not eneterd
     public async wrongPasswordErrorAssertion(){
         const error = await this.wrongPasswordError();
         await error?.textContent();

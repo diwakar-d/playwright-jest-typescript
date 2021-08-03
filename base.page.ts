@@ -1,3 +1,4 @@
+//A page to holde all common methods
 import { Page } from "playwright";
 
 export default class BasePage {
@@ -6,6 +7,7 @@ export default class BasePage {
         this.page = page;
     }
 
+    //A full page screenshot that will be stored in 'root' folder
     public async takeScreenshot(){
         await this.page.screenshot({ path: 'screenshot.png', fullPage: true });
     }
