@@ -1,4 +1,9 @@
 import { Page } from "playwright";
+import fs = require('fs');
+const yaml = require('js-yaml');
+
+let fileContents = fs.readFileSync('C:/Users/diwakar.devapalan/Documents/Learn/AutomationProjects/Playwright/playwright-jest-typescript/config.yaml', 'utf8');
+let data = yaml.safeLoad(fileContents);
 
 export default class LoginPage {
     private page: Page;
@@ -30,6 +35,12 @@ export default class LoginPage {
     public async successfulAssertion(){
         const name = await this.nameOfTheUser();
         await name?.isVisible();
+    }
+
+    public async successfulLogin(username: string, password: string){
+       await this.enterUserName(username);
+       await this.enterPassword(password);
+       await this.clickOnLogin();
     }
 
     public async wrongPasswordErrorAssertion(){
