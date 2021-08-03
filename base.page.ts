@@ -5,4 +5,8 @@ export default class BasePage {
     constructor(page: Page){
         this.page = page;
     }
+
+    public async takeScreenshot(){
+        await this.page.screenshot({ path: 'screenshot.png', fullPage: true });
+    }
 }
