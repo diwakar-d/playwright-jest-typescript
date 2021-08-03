@@ -1,14 +1,14 @@
 # playwright-jest-typescript
 **Introduction**
 
-This is a part of my test automation portfolio project that I am currently working on to showcase my skills.
+This is a part of my test automation portfolio
 
 **Built With**
 
 - Microsoft PlayWirght
 - Jest
 - TypeScript
-- Allure
+- jest-html-reporter
 
 **Design Pattern**
 
