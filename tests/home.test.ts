@@ -1,5 +1,5 @@
 import LoginPage from "../PageObjects/login.page";
-import { Browser, chromium, Page } from "playwright";
+import { Browser, chromium, firefox, Page } from "playwright";
 import fs = require('fs');
 import HomePage from "../PageObjects/home.page";
 import BasePage from "../base.page";
@@ -16,7 +16,7 @@ describe('Login', () => {
     let base: BasePage;
     
     beforeAll( async () => {
-        browser = await chromium.launch({
+        browser = await firefox.launch({
             headless: false
             })
     })
@@ -24,6 +24,7 @@ describe('Login', () => {
     beforeEach( async () => {
         const context = await browser.newContext();
         page = await context.newPage();
+        await page.goto(data.url);
         login = new LoginPage(page);
         home = new HomePage(page);
         base = new BasePage(page);
